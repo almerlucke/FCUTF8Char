@@ -8,7 +8,9 @@
 
 #import "FCUTF8Char.h"
 
-
+/**
+ *  Private FCUTF8Char interface
+ */
 @interface FCUTF8Char ()
 {
     NSInteger _numBytes;
@@ -18,6 +20,9 @@
 
 
 @implementation FCUTF8Char
+
+
+#pragma mark - Init Methods
 
 - (id)initWithBytes:(uint8_t *)bytes numBytes:(NSInteger)numBytes
 {
@@ -72,6 +77,8 @@
     
     return self;
 }
+
+#pragma mark - Inspection Methods
 
 - (int32_t)unicodeCodePoint
 {
