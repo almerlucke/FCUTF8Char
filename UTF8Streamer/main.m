@@ -15,11 +15,10 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        uint8_t bytes[1] = {0x24};
-        FCUTF8Char *utf8Char = [[FCUTF8Char alloc] initWithUnicodeCodePoint:0x20AC];
+        FCUTF8Char *utf8Char = [[FCUTF8Char alloc] initWithUnicodeCodePoint:0x24B62];
         
         // insert code here...
-        NSLog(@"Hello, World! %@ %x %d", [utf8Char string], [utf8Char unicodeCodePoint], 0x20AC);
+        NSLog(@"Hello, World! %@ %x %d", [utf8Char UTF8String], [utf8Char unicodeCodePoint], 0x24B62);
         
         
         

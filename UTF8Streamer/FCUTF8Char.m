@@ -8,33 +8,6 @@
 
 #import "FCUTF8Char.h"
 
-//if ((byte1 >> 4) == 15) {
-//    // 4 bytes
-//    value |= byte1 & 0x7;
-//    value <<= 6;
-//    value |= _bytes[1] & 0x3F;
-//    value <<= 6;
-//    value |= _bytes[2] & 0x3F;
-//    value <<= 6;
-//    value |= _bytes[3] & 0x3F;
-//} else if ((byte1 >> 5) == 7) {
-//    // 3 bytes
-//    value |= byte1 & 0xF;
-//    value <<= 6;
-//    value |= _bytes[1] & 0x3F;
-//    value <<= 6;
-//    value |= _bytes[2] & 0x3F;
-//} else if ((byte1 >> 6) == 3) {
-//    // 2 bytes
-//    value |= byte1 & 0x1F;
-//    value <<= 6;
-//    value |= _bytes[1] & 0x3F;
-//} else {
-//    value = byte1;
-//}
-
-
-#define FCUTF8_CONTINUE_BYTES_MASK
 
 @interface FCUTF8Char ()
 {
@@ -49,13 +22,12 @@
 - (id)initWithBytes:(uint8_t *)bytes numBytes:(NSInteger)numBytes
 {
     if ((self = [super init])) {
+        // only 4 bytes or less are supported
         if (numBytes > 4) return nil;
         
         _numBytes = numBytes;
         
-        for (NSInteger i = 0; i < numBytes; i++) {
-            _bytes[i] = bytes[i];
-        }
+        memcpy(_bytes, bytes, numBytes);
     }
     
     return self;
@@ -64,27 +36,34 @@
 - (id)initWithUnicodeCodePoint:(int32_t)codePoint
 {
     if ((self = [super init])) {
-        if (codePoint <= 0x7F) {
-            // one byte
+        if (codePoint < 0x80) {
+            // 1 byte
             _numBytes = 1;
             _bytes[0] = codePoint;
-        } else if (codePoint <= 0x7FF) {
-            // two bytes
+        } else if (codePoint < 0x800) {
+            // 2 bytes
             _numBytes = 2;
             _bytes[1] = (codePoint & 0x3F) | 0x80;
             codePoint >>= 6;
             _bytes[0] = codePoint | 0xC0;
-        } else if (codePoint <= 0xFFFF) {
-            // three bytes
+        } else if (codePoint < 0x10000) {
+            // 3 bytes
             _numBytes = 3;
             _bytes[2] = (codePoint & 0x3F) | 0x80;
             codePoint >>= 6;
             _bytes[1] = (codePoint & 0x3F) | 0x80;
             codePoint >>= 6;
             _bytes[0] = codePoint | 0xE0;
-        } else if (codePoint <= 0x1FFFFF) {
-            // four bytes
+        } else if (codePoint < 0x200000) {
+            // 4 bytes
             _numBytes = 4;
+            _bytes[3] = (codePoint & 0x3F) | 0x80;
+            codePoint >>= 6;
+            _bytes[2] = (codePoint & 0x3F) | 0x80;
+            codePoint >>= 6;
+            _bytes[1] = (codePoint & 0x3F) | 0x80;
+            codePoint >>= 6;
+            _bytes[0] = codePoint | 0xF0;
         } else {
             // only 4 bytes or less are supported
             self = nil;
@@ -120,6 +99,7 @@
         value <<= 6;
         value |= _bytes[1] & 0x3F;
     } else {
+        // 1 byte
         value = _bytes[0];
     }
     
@@ -136,17 +116,14 @@
     return _bytes;
 }
 
-- (NSString *)string
+- (NSString *)UTF8String
 {
-    char uniCString[5];
+    // 5 chars so last char is always zero terminator for c string
+    char utf8CString[5] = {0, 0, 0, 0, 0};
     
-    for (NSInteger i = 0; i < _numBytes; i++) {
-        uniCString[i] = _bytes[i];
-    }
+    memcpy(utf8CString, _bytes, _numBytes);
     
-    uniCString[_numBytes] = 0;
-    
-    return [[NSString alloc] initWithUTF8String:uniCString];
+    return [[NSString alloc] initWithUTF8String:utf8CString];
 }
 
 @end

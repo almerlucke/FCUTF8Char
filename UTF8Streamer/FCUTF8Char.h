@@ -14,7 +14,7 @@
 - (id)initWithUnicodeCodePoint:(int32_t)codePoint;
 
 - (int32_t)unicodeCodePoint;
-- (NSString *)string;
+- (NSString *)UTF8String;
 - (uint8_t *)bytes;
 - (NSInteger)numBytes;
 
