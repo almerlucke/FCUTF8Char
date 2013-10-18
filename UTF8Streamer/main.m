@@ -9,20 +9,24 @@
 #import <Foundation/Foundation.h>
 
 #import "FCUTF8Char.h"
-
+#import "FCUTF8String.h"
 
 
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        FCUTF8Char *utf8Char = [[FCUTF8Char alloc] initWithUnicodeCodePoint:0x24B62];
+        FCUTF8String *utf8String = [[FCUTF8String alloc] init];
+        
+        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24B62]];
+        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0xA2]];
+        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x20AC]];
+        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24]];
+        [utf8String appendSystemString:@"Check it ∞å𤭢"];
         
         // insert code here...
-        NSLog(@"Hello, World! %@ %x %d", utf8Char.UTF8String, (unsigned int)utf8Char.unicodeCodePoint, 0x24B62);
-        
-        
-        
+        NSLog(@"Hello, World! %@", [utf8String systemString]);
     }
+    
     return 0;
 }
 

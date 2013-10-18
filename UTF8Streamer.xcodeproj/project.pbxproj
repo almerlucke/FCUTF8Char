@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CB564E4F180F078D0046B3EB /* FCUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */; };
 		CB564E52180F07A50046B3EB /* FCUTF8Char.m in Sources */ = {isa = PBXBuildFile; fileRef = CB564E51180F07A50046B3EB /* FCUTF8Char.m */; };
+		CB6CA19018118BDB00AA0A7E /* FCUTF8String.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6CA18F18118BDB00AA0A7E /* FCUTF8String.m */; };
 		CBA87839180DDE560004B70E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA87838180DDE560004B70E /* Foundation.framework */; };
 		CBA8783C180DDE560004B70E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CBA8783B180DDE560004B70E /* main.m */; };
 		CBA87840180DDE560004B70E /* UTF8Streamer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = CBA8783F180DDE560004B70E /* UTF8Streamer.1 */; };
@@ -32,6 +33,8 @@
 		CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8Stream.m; sourceTree = "<group>"; };
 		CB564E50180F07A50046B3EB /* FCUTF8Char.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8Char.h; sourceTree = "<group>"; };
 		CB564E51180F07A50046B3EB /* FCUTF8Char.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8Char.m; sourceTree = "<group>"; };
+		CB6CA18E18118BDB00AA0A7E /* FCUTF8String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8String.h; sourceTree = "<group>"; };
+		CB6CA18F18118BDB00AA0A7E /* FCUTF8String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8String.m; sourceTree = "<group>"; };
 		CBA87835180DDE560004B70E /* UTF8Streamer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = UTF8Streamer; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBA87838180DDE560004B70E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CBA8783B180DDE560004B70E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 			children = (
 				CB564E50180F07A50046B3EB /* FCUTF8Char.h */,
 				CB564E51180F07A50046B3EB /* FCUTF8Char.m */,
+				CB6CA18E18118BDB00AA0A7E /* FCUTF8String.h */,
+				CB6CA18F18118BDB00AA0A7E /* FCUTF8String.m */,
 				CB564E4D180F078D0046B3EB /* FCUTF8Stream.h */,
 				CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */,
 				CBA8783B180DDE560004B70E /* main.m */,
@@ -149,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB6CA19018118BDB00AA0A7E /* FCUTF8String.m in Sources */,
 				CBA8783C180DDE560004B70E /* main.m in Sources */,
 				CB564E52180F07A50046B3EB /* FCUTF8Char.m in Sources */,
 				CB564E4F180F078D0046B3EB /* FCUTF8Stream.m in Sources */,

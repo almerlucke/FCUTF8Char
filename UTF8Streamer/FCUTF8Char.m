@@ -38,6 +38,11 @@
     return self;
 }
 
++ (FCUTF8Char *)charWithBytes:(char *)bytes numBytes:(NSInteger)numBytes
+{
+    return [[self alloc] initWithBytes:bytes numBytes:numBytes];
+}
+
 - (id)initWithUnicodeCodePoint:(NSInteger)codePoint
 {
     if ((self = [super init])) {
@@ -76,6 +81,11 @@
     }
     
     return self;
+}
+
++ (FCUTF8Char *)charWithUnicodeCodePoint:(NSInteger)codePoint
+{
+    return [[self alloc] initWithUnicodeCodePoint:codePoint];
 }
 
 #pragma mark - Inspection Methods

@@ -42,6 +42,16 @@
 - (id)initWithBytes:(char *)bytes numBytes:(NSInteger)numBytes;
 
 /**
+ *  Class wrapper around initWithBytes
+ *
+ *  @param bytes
+ *  @param numBytes
+ *
+ *  @return FCUTF8Char
+ */
++ (FCUTF8Char *)charWithBytes:(char *)bytes numBytes:(NSInteger)numBytes;
+
+/**
  *  Initialize a FCUTF8Char object with a unicode code point
  *
  *  @param codePoint unicode code point integer
@@ -49,5 +59,14 @@
  *  @return FCUTF8Char if code point is below 0x200000, otherwise nil
  */
 - (id)initWithUnicodeCodePoint:(NSInteger)codePoint;
+
+/**
+ *  Class wrapper around initWithUnicodeCodePoint
+ *
+ *  @param codePoint
+ *
+ *  @return FCUTF8Char
+ */
++ (FCUTF8Char *)charWithUnicodeCodePoint:(NSInteger)codePoint;
 
 @end
