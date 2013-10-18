@@ -143,4 +143,9 @@
     return [[NSString alloc] initWithUTF8String:utf8CString];
 }
 
+- (NSString *)description
+{
+    return [self systemString];
+}
+
 @end

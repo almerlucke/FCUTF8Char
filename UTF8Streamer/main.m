@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
         [utf8String appendSystemString:@"Check it ∞å𤭢"];
         [utf8String replaceCharacterAtIndex:1 withCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x20AC]];
         
-        NSLog(@"%@", [utf8String systemString]);
+        NSLog(@"%@", utf8String);
     }
     
     return 0;

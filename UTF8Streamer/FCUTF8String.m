@@ -165,4 +165,9 @@
     [_storage insertObject:character atIndex:index];
 }
 
+- (NSString *)description
+{
+    return [self systemString];
+}
+
 @end
