@@ -33,6 +33,6 @@
 //    value = byte1;
 //}
 
-@interface FCUTF8Stream : NSObject
+@interface FCUTF8CharacterStream : NSObject
 
 @end

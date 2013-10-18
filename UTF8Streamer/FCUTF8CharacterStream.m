@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Farcoding. All rights reserved.
 //
 
-#import "FCUTF8Stream.h"
+#import "FCUTF8CharacterStream.h"
 
-@implementation FCUTF8Stream
+@implementation FCUTF8CharacterStream
 
 @end

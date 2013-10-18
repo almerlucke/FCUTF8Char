@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB564E4F180F078D0046B3EB /* FCUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */; };
+		CB564E4F180F078D0046B3EB /* FCUTF8CharacterStream.m in Sources */ = {isa = PBXBuildFile; fileRef = CB564E4E180F078D0046B3EB /* FCUTF8CharacterStream.m */; };
 		CB564E52180F07A50046B3EB /* FCUTF8Char.m in Sources */ = {isa = PBXBuildFile; fileRef = CB564E51180F07A50046B3EB /* FCUTF8Char.m */; };
 		CB6CA19018118BDB00AA0A7E /* FCUTF8String.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6CA18F18118BDB00AA0A7E /* FCUTF8String.m */; };
 		CBA87839180DDE560004B70E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA87838180DDE560004B70E /* Foundation.framework */; };
@@ -29,8 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CB564E4D180F078D0046B3EB /* FCUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8Stream.h; sourceTree = "<group>"; };
-		CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8Stream.m; sourceTree = "<group>"; };
+		CB564E4D180F078D0046B3EB /* FCUTF8CharacterStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8CharacterStream.h; sourceTree = "<group>"; };
+		CB564E4E180F078D0046B3EB /* FCUTF8CharacterStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8CharacterStream.m; sourceTree = "<group>"; };
 		CB564E50180F07A50046B3EB /* FCUTF8Char.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8Char.h; sourceTree = "<group>"; };
 		CB564E51180F07A50046B3EB /* FCUTF8Char.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUTF8Char.m; sourceTree = "<group>"; };
 		CB6CA18E18118BDB00AA0A7E /* FCUTF8String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUTF8String.h; sourceTree = "<group>"; };
@@ -86,8 +86,8 @@
 				CB564E51180F07A50046B3EB /* FCUTF8Char.m */,
 				CB6CA18E18118BDB00AA0A7E /* FCUTF8String.h */,
 				CB6CA18F18118BDB00AA0A7E /* FCUTF8String.m */,
-				CB564E4D180F078D0046B3EB /* FCUTF8Stream.h */,
-				CB564E4E180F078D0046B3EB /* FCUTF8Stream.m */,
+				CB564E4D180F078D0046B3EB /* FCUTF8CharacterStream.h */,
+				CB564E4E180F078D0046B3EB /* FCUTF8CharacterStream.m */,
 				CBA8783B180DDE560004B70E /* main.m */,
 				CBA8783F180DDE560004B70E /* UTF8Streamer.1 */,
 				CBA8783D180DDE560004B70E /* Supporting Files */,
@@ -157,7 +157,7 @@
 				CB6CA19018118BDB00AA0A7E /* FCUTF8String.m in Sources */,
 				CBA8783C180DDE560004B70E /* main.m in Sources */,
 				CB564E52180F07A50046B3EB /* FCUTF8Char.m in Sources */,
-				CB564E4F180F078D0046B3EB /* FCUTF8Stream.m in Sources */,
+				CB564E4F180F078D0046B3EB /* FCUTF8CharacterStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
