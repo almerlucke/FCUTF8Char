@@ -15,7 +15,7 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        FCUTF8String *utf8String = [[FCUTF8String alloc] init];
+        FCUTF8String *utf8String = [[FCUTF8String alloc] initWithSystemString:@"Hello world!"];
         
         [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24B62]];
         [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0xA2]];
@@ -23,8 +23,9 @@ int main(int argc, const char * argv[])
         [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24]];
         [utf8String appendSystemString:@"Check it ∞å𤭢"];
         
-        // insert code here...
-        NSLog(@"Hello, World! %@", [utf8String systemString]);
+        [utf8String replaceCharacterAtIndex:1 withCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x20AC]];
+        
+        NSLog(@"%@", [utf8String systemString]);
     }
     
     return 0;

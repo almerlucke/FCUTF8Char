@@ -133,7 +133,7 @@
     return _bytes;
 }
 
-- (NSString *)UTF8String
+- (NSString *)systemString
 {
     // 5 chars so last char is always zero terminator for c string
     char utf8CString[5] = {0, 0, 0, 0, 0};

@@ -74,48 +74,75 @@
 
 - (void)appendCharacter:(FCUTF8Char *)character
 {
-    [_storage addObject:character];
+    if (character) {
+        [_storage addObject:character];
+    }
 }
 
 
 #pragma mark - Getters
 
-- (NSString *)systemString
+- (NSUInteger)length
+{
+    return [_storage count];
+}
+
+- (NSData *)data
 {
     NSInteger sizeInBytes = 0;
-    char *cString = NULL;
-    char *cStringPtr = NULL;
+    char *cData = NULL;
+    char *cDataPtr = NULL;
     
     // calculate size of buffer
     for (FCUTF8Char *character in _storage) {
         sizeInBytes += character.numBytes;
     }
     
-    // add 1 byte extra for null terminator char
-    cString = (char *)malloc(sizeInBytes * sizeof(char) + 1);
-    cStringPtr = cString;
+    // try to get memory to store bytes
+    cData = (char *)malloc(sizeInBytes * sizeof(char));
+    cDataPtr = cData;
     
     // return if we couldn't get memory
-    if (NULL == cString) return nil;
+    if (NULL == cData) return nil;
     
     // add bytes to buffer
     for (FCUTF8Char *character in _storage) {
         NSInteger numBytes = character.numBytes;
-        memcpy(cStringPtr, character.bytes, numBytes);
-        cStringPtr += numBytes;
+        memcpy(cDataPtr, character.bytes, numBytes);
+        cDataPtr += numBytes;
     }
     
-    // set null terminator character
-    *cStringPtr = 0;
-    
-    // create NSString from buffer
-    NSString *str = [[NSString alloc] initWithUTF8String:cString];
+    // create NSData from buffer
+    NSData *data = [NSData dataWithBytes:cData length:sizeInBytes];
     
     // free memory reserved
-    free(cString);
+    free(cData);
     
-    // return NSString
-    return str;
+    // return NSData
+    return data;
+}
+
+- (NSString *)systemString
+{
+    return [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+}
+
+
+#pragma mark - Utilities
+
+- (FCUTF8Char *)characterAtIndex:(NSUInteger)index
+{
+    return [_storage objectAtIndex:index];
+}
+
+- (void)replaceCharacterAtIndex:(NSUInteger)index withCharacter:(FCUTF8Char *)character
+{
+    [_storage replaceObjectAtIndex:index withObject:character];
+}
+
+- (void)insertCharacter:(FCUTF8Char *)character atIndex:(NSUInteger)index
+{
+    [_storage insertObject:character atIndex:index];
 }
 
 @end

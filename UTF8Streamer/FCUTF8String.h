@@ -15,9 +15,19 @@
 @interface FCUTF8String : NSObject
 
 /**
- *  Get a NSString object
+ *  Get an NSString object
  */
 @property (nonatomic, readonly) NSString *systemString;
+
+/**
+ *  Get the length of this FCUTF8String, length is expressed in number of UTF8Char objects
+ */
+@property (nonatomic, readonly) NSUInteger length;
+
+/**
+ *  Get an NSData object of this UTF8String containing the raw UTF-8 bytes
+ */
+@property (nonatomic, readonly) NSData *data;
 
 
 /**
@@ -39,7 +49,7 @@
 + (FCUTF8String *)stringWithSystemString:(NSString *)str;
 
 /**
- *  Append a NSString object
+ *  Append an NSString object
  *
  *  @param string
  */
@@ -51,6 +61,31 @@
  *  @param character
  */
 - (void)appendCharacter:(FCUTF8Char *)character;
+
+/**
+ *  Get a FCUTF8Char at a specific index
+ *
+ *  @param index
+ *
+ *  @return FCUTF8Char
+ */
+- (FCUTF8Char *)characterAtIndex:(NSUInteger)index;
+
+/**
+ *  Replace a FCUTF8Char at a specific index
+ *
+ *  @param character
+ *  @param index
+ */
+- (void)replaceCharacterAtIndex:(NSUInteger)index withCharacter:(FCUTF8Char *)character;
+
+/**
+ *  Insert a FCUTF8Char at a specific index
+ *
+ *  @param character
+ *  @param index     
+ */
+- (void)insertCharacter:(FCUTF8Char *)character atIndex:(NSUInteger)index;
 
 
 @end

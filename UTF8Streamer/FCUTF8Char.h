@@ -18,7 +18,7 @@
 /**
  *  Get NSString representation of the UTF-8 character
  */
-@property (nonatomic, readonly) NSString *UTF8String;
+@property (nonatomic, readonly) NSString *systemString;
 
 /**
  *  Get the bytes making up the UTF-8 character
