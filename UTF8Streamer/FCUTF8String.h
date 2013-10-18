@@ -29,6 +29,14 @@
  */
 @property (nonatomic, readonly) NSData *data;
 
+/**
+ *  Initialize a FCUTF8String with NSData
+ *
+ *  @param data
+ *
+ *  @return FCUTF8String
+ */
+- (id)initWithData:(NSData *)data;
 
 /**
  *  Initialize a FCUTF8String with NSString
@@ -40,6 +48,15 @@
 - (id)initWithSystemString:(NSString *)str;
 
 /**
+ *  Class wrapper around initWithSystemData
+ *
+ *  @param data
+ *
+ *  @return FCUTF8String
+ */
++ (FCUTF8String *)stringWithData:(NSData *)data;
+
+/**
  *  Class wrapper around initWithSystemString
  *
  *  @param str
@@ -47,6 +64,13 @@
  *  @return FCUTF8String
  */
 + (FCUTF8String *)stringWithSystemString:(NSString *)str;
+
+/**
+ *  Append raw UTF-8 data
+ *
+ *  @param data
+ */
+- (void)appendData:(NSData *)data;
 
 /**
  *  Append an NSString object

@@ -29,6 +29,15 @@
     return self;
 }
 
+- (id)initWithData:(NSData *)data
+{
+    if ((self = [self init])) {
+        [self appendData:data];
+    }
+    
+    return self;
+}
+
 - (id)initWithSystemString:(NSString *)str
 {
     if ((self = [self init])) {
@@ -36,6 +45,11 @@
     }
     
     return self;
+}
+
++ (FCUTF8String *)stringWithData:(NSData *)data
+{
+    return [[self alloc] initWithData:data];
 }
 
 + (FCUTF8String *)stringWithSystemString:(NSString *)str
@@ -46,11 +60,12 @@
 
 #pragma mark - Append
 
-- (void)appendSystemString:(NSString *)string
+- (void)appendData:(NSData *)data
 {
-    const char *utf8Sequence = [string UTF8String];
+    const char *utf8Sequence = [data bytes];
+    const char *utf8SequenceEnd = utf8Sequence + [data length];
     
-    while (*utf8Sequence != 0) {
+    while (utf8Sequence < utf8SequenceEnd) {
         char byte1 = *utf8Sequence;
         if ((byte1 >> 4) == 15) {
             // 4 bytes
@@ -70,6 +85,11 @@
             utf8Sequence += 1;
         }
     }
+}
+
+- (void)appendSystemString:(NSString *)string
+{
+    [self appendData:[string dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 - (void)appendCharacter:(FCUTF8Char *)character
