@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
         FCUTF8Char *utf8Char = [[FCUTF8Char alloc] initWithUnicodeCodePoint:0x24B62];
         
         // insert code here...
-        NSLog(@"Hello, World! %@ %x %d", [utf8Char UTF8String], [utf8Char unicodeCodePoint], 0x24B62);
+        NSLog(@"Hello, World! %@ %x %d", utf8Char.UTF8String, (unsigned int)utf8Char.unicodeCodePoint, 0x24B62);
         
         
         

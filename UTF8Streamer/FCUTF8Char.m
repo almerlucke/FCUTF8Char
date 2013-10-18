@@ -14,7 +14,7 @@
 @interface FCUTF8Char ()
 {
     NSInteger _numBytes;
-    uint8_t _bytes[4];
+    char _bytes[4];
 }
 @end
 
@@ -24,7 +24,7 @@
 
 #pragma mark - Init Methods
 
-- (id)initWithBytes:(uint8_t *)bytes numBytes:(NSInteger)numBytes
+- (id)initWithBytes:(char *)bytes numBytes:(NSInteger)numBytes
 {
     if ((self = [super init])) {
         // only 4 bytes or less are supported
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (id)initWithUnicodeCodePoint:(int32_t)codePoint
+- (id)initWithUnicodeCodePoint:(NSInteger)codePoint
 {
     if ((self = [super init])) {
         if (codePoint < 0x80) {
@@ -80,9 +80,9 @@
 
 #pragma mark - Inspection Methods
 
-- (int32_t)unicodeCodePoint
+- (NSInteger)unicodeCodePoint
 {
-    uint32_t value = 0;
+    NSInteger value = 0;
     
     if (_numBytes == 4) {
         // 4 bytes
@@ -118,7 +118,7 @@
     return _numBytes;
 }
 
-- (uint8_t *)bytes
+- (char *)bytes
 {
     return _bytes;
 }
