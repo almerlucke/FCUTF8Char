@@ -16,8 +16,9 @@
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        NSString *path = @"/Users/almerlucke/Desktop/test.txt";
-        FCUTF8CharacterStream *stream = [FCUTF8CharacterStream characterStreamWithFileAtPath:path];
+        NSString *str = @"Check it ®´¥ät!";
+        NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+        FCUTF8CharacterStream *stream = [FCUTF8CharacterStream characterStreamWithData:data];
         NSError *error = nil;
         FCUTF8Char *character = [stream getCharacter:&error];
         
@@ -30,9 +31,7 @@ int main(int argc, const char * argv[])
             NSLog(@"error: %@", error);
         }
         
-        FCUTF8String *str = [FCUTF8String stringWithSystemString:@"Check it ®´¥ät!"];
-        
-        NSLog(@"%@", str);
+        NSLog(@"%@", [FCUTF8String stringWithSystemString:str]);
     }
     
     return 0;
