@@ -10,21 +10,29 @@
 
 #import "FCUTF8Char.h"
 #import "FCUTF8String.h"
+#import "FCUTF8CharacterStream.h"
 
 
 int main(int argc, const char * argv[])
 {
     @autoreleasepool {
-        FCUTF8String *utf8String = [[FCUTF8String alloc] initWithSystemString:@"Hello world!"];
+        NSString *path = @"/Users/almerlucke/Desktop/test.txt";
+        FCUTF8CharacterStream *stream = [[FCUTF8CharacterStream alloc] initWithFileAtPath:path];
+        NSError *error = nil;
+        FCUTF8Char *character = [stream getCharacter:&error];
         
-        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24B62]];
-        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0xA2]];
-        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x20AC]];
-        [utf8String appendCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x24]];
-        [utf8String appendSystemString:@"Check it ∞å𤭢"];
-        [utf8String replaceCharacterAtIndex:1 withCharacter:[FCUTF8Char charWithUnicodeCodePoint:0x20AC]];
+        while (character) {
+            NSLog(@"%@", character);
+            character = [stream getCharacter:&error];
+        }
         
-        NSLog(@"%@", utf8String);
+        if (error) {
+            NSLog(@"error: %@", error);
+        }
+        
+        FCUTF8String *str = [FCUTF8String stringWithSystemString:@"Check it ®´¥ät!"];
+        
+        NSLog(@"%@", str);
     }
     
     return 0;

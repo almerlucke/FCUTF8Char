@@ -13,8 +13,8 @@
  */
 @interface FCUTF8Char ()
 {
-    NSInteger _numBytes;
-    char _bytes[4];
+    NSUInteger _numBytes;
+    uint8_t _bytes[4];
 }
 @end
 
@@ -24,7 +24,7 @@
 
 #pragma mark - Init Methods
 
-- (id)initWithBytes:(char *)bytes numBytes:(NSInteger)numBytes
+- (id)initWithBytes:(const uint8_t *)bytes numBytes:(NSUInteger)numBytes
 {
     if ((self = [super init])) {
         // only 4 bytes or less are supported
@@ -38,12 +38,12 @@
     return self;
 }
 
-+ (FCUTF8Char *)charWithBytes:(char *)bytes numBytes:(NSInteger)numBytes
++ (FCUTF8Char *)charWithBytes:(const uint8_t *)bytes numBytes:(NSUInteger)numBytes
 {
     return [[self alloc] initWithBytes:bytes numBytes:numBytes];
 }
 
-- (id)initWithUnicodeCodePoint:(NSInteger)codePoint
+- (id)initWithUnicodeCodePoint:(NSUInteger)codePoint
 {
     if ((self = [super init])) {
         if (codePoint < 0x80) {
@@ -83,16 +83,16 @@
     return self;
 }
 
-+ (FCUTF8Char *)charWithUnicodeCodePoint:(NSInteger)codePoint
++ (FCUTF8Char *)charWithUnicodeCodePoint:(NSUInteger)codePoint
 {
     return [[self alloc] initWithUnicodeCodePoint:codePoint];
 }
 
 #pragma mark - Inspection Methods
 
-- (NSInteger)unicodeCodePoint
+- (NSUInteger)unicodeCodePoint
 {
-    NSInteger value = 0;
+    NSUInteger value = 0;
     
     if (_numBytes == 4) {
         // 4 bytes
@@ -123,12 +123,12 @@
     return value;
 }
 
-- (NSInteger)numBytes
+- (NSUInteger)numBytes
 {
     return _numBytes;
 }
 
-- (char *)bytes
+- (uint8_t *)bytes
 {
     return _bytes;
 }
@@ -136,11 +136,11 @@
 - (NSString *)systemString
 {
     // 5 chars so last char is always zero terminator for c string
-    char utf8CString[5] = {0, 0, 0, 0, 0};
+    uint8_t utf8CString[5] = {0, 0, 0, 0, 0};
     
     memcpy(utf8CString, _bytes, _numBytes);
     
-    return [[NSString alloc] initWithUTF8String:utf8CString];
+    return [[NSString alloc] initWithUTF8String:(char *)utf8CString];
 }
 
 - (NSString *)description

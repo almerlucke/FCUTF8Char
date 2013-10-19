@@ -62,26 +62,26 @@
 
 - (void)appendData:(NSData *)data
 {
-    const char *utf8Sequence = [data bytes];
-    const char *utf8SequenceEnd = utf8Sequence + [data length];
+    const uint8_t *utf8Sequence = [data bytes];
+    const uint8_t *utf8SequenceEnd = utf8Sequence + [data length];
     
     while (utf8Sequence < utf8SequenceEnd) {
-        char byte1 = *utf8Sequence;
+        uint8_t byte1 = *utf8Sequence;
         if ((byte1 >> 4) == 15) {
             // 4 bytes
-            [self appendCharacter:[FCUTF8Char charWithBytes:(char *)utf8Sequence numBytes:4]];
+            [self appendCharacter:[FCUTF8Char charWithBytes:utf8Sequence numBytes:4]];
             utf8Sequence += 4;
         } else if ((byte1 >> 5) == 7) {
             // 3 bytes
-            [self appendCharacter:[FCUTF8Char charWithBytes:(char *)utf8Sequence numBytes:3]];
+            [self appendCharacter:[FCUTF8Char charWithBytes:utf8Sequence numBytes:3]];
             utf8Sequence += 3;
         } else if ((byte1 >> 6) == 3) {
             // 2 bytes
-            [self appendCharacter:[FCUTF8Char charWithBytes:(char *)utf8Sequence numBytes:2]];
+            [self appendCharacter:[FCUTF8Char charWithBytes:utf8Sequence numBytes:2]];
             utf8Sequence += 2;
         } else {
             // 1 byte
-            [self appendCharacter:[FCUTF8Char charWithBytes:(char *)utf8Sequence numBytes:1]];
+            [self appendCharacter:[FCUTF8Char charWithBytes:utf8Sequence numBytes:1]];
             utf8Sequence += 1;
         }
     }
@@ -109,9 +109,9 @@
 
 - (NSData *)data
 {
-    NSInteger sizeInBytes = 0;
-    char *cData = NULL;
-    char *cDataPtr = NULL;
+    NSUInteger sizeInBytes = 0;
+    uint8_t *cData = NULL;
+    uint8_t *cDataPtr = NULL;
     
     // calculate size of buffer
     for (FCUTF8Char *character in _storage) {
@@ -119,7 +119,7 @@
     }
     
     // try to get memory to store bytes
-    cData = (char *)malloc(sizeInBytes * sizeof(char));
+    cData = (uint8_t *)malloc(sizeInBytes * sizeof(uint8_t));
     cDataPtr = cData;
     
     // return if we couldn't get memory
@@ -127,7 +127,7 @@
     
     // add bytes to buffer
     for (FCUTF8Char *character in _storage) {
-        NSInteger numBytes = character.numBytes;
+        NSUInteger numBytes = character.numBytes;
         memcpy(cDataPtr, character.bytes, numBytes);
         cDataPtr += numBytes;
     }
