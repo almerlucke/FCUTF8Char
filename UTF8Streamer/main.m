@@ -17,7 +17,7 @@ int main(int argc, const char * argv[])
 {
     @autoreleasepool {
         NSString *path = @"/Users/almerlucke/Desktop/test.txt";
-        FCUTF8CharacterStream *stream = [[FCUTF8CharacterStream alloc] initWithFileAtPath:path];
+        FCUTF8CharacterStream *stream = [FCUTF8CharacterStream characterStreamWithFileAtPath:path];
         NSError *error = nil;
         FCUTF8Char *character = [stream getCharacter:&error];
         
